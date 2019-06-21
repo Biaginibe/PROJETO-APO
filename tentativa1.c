@@ -326,25 +326,74 @@ main(){
                             break;
                         }
                         break;
+                //HEXADECIMAL PARA...
                 case 4:
                     switch (opc2){
                         case 1:
                             printf("\n\n**************DEFINIÇÕES**************\n\n");
                             EXP_HEXA();
                             EXP_DECIMAL();
+                            contando=0;
+                            resultado=0;
                             printf("Conversão de hexadecimal para decimal");
+                            //CONVERTENDO PARA DECIMAL
+                            for(i=7; i>=0; i--){
+                                contando++;
+                                if(b[i]!=0){
+                                    resultado+=pow(16, contando-1)*b[i];
+                                }
+                            }
+                            printf("\n-----------------------------//-------------------------------\n\n");
+                                printf("Valor hexadecimal= ");
+                                //EXIBINDO VETOR
+                                for(i=0; i<8; i++){
+                                    printf("%d", b[i]);
+                                }
+                                printf("\nValor convertido para decimal= %d \n\n\n", resultado);
                             break;
                         case 2:
                             printf("\n\n**************DEFINIÇÕES**************\n\n");
                             EXP_HEXA();
                             EXP_BINARIO();
                             printf("Conversão de hexadecimal para binário");
+                            resultado=0;
+                            contando=0;
+                            //CONVERTENDO PARA DECIMAL
+                            for(i=7; i>=0; i--){
+                                contando++;
+                                if(b[i]!=0){
+                                    resultado+=pow(16, contando-1)*b[i];
+                                }
+                            }
+                                printf("\n\nValor hexadecimal= ");
+                                //EXIBINDO VALOR HEXADECIMAL
+                                for(i=0; i<8; i++){
+                                    printf("%d", b[i]);
+                                }
+                                //CONVERTENDO DE DEC PARA BINARIO
+                                printf(DEC_BIN(resultado));
                             break;
                         case 3:
                             printf("\n\n**************DEFINIÇÕES**************\n\n");
                             EXP_HEXA();
                             EXP_OCTAL();
                             printf("Conversão de hexadecimal para octal");
+                            resultado=0;
+                            contando=0;
+                            //CONVERTENDO PARA DECIMAL
+                            for(i=7; i>=0; i--){
+                                contando++;
+                                if(b[i]!=0){
+                                    resultado+=pow(16, contando-1)*b[i];
+                                }
+                            }
+                                printf("\n\nValor hexadecimal= ");
+                                //EXIBINDO VALOR HEXADECIMAL
+                                for(i=0; i<8; i++){
+                                    printf("%d", b[i]);
+                                }
+                                //CONVERTENDO DE DEC PARA OCTAL
+                                printf(DEC_OCTAL(resultado));
                             break;
                         case 4:
                             printf("\n\nNão da pra converter pois você escolheu a mesma unidade de medida nas duas opções\n\n");
