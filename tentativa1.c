@@ -28,7 +28,7 @@ void EXP_HEXA(){
            ",B=11,C=12,D=13,E=14eF=15.\n\n");
 }
 //FUNÇÃO PARA CONVERTER DECIMAL PARA BINÁRIO
-int DEC_BIN(int valor){
+void DEC_BIN(int valor){
     int b[8], resultado=0, i, cont=0;
     cont=0;
     if(valor>0){
@@ -46,10 +46,9 @@ int DEC_BIN(int valor){
         }
     }
     printf("\n\n");
-    return 0;
 }
 //FUNÇÃO PARA CONVERTER DECIMAL PARA OCTAL
-int DEC_OCTAL(int valor){
+void DEC_OCTAL(int valor){
     int octal[8], resultado=0, i, cont=0;
     cont=0;
     if(valor>0){
@@ -66,10 +65,9 @@ int DEC_OCTAL(int valor){
         }
     }
     printf("\n\n");
-    return 0;
 }
 //FUNÇÃO PARA CONVERTER DECIMAL PARA HEXADECIMAL
-int DEC_HEXA(int valor){
+void DEC_HEXA(int valor){
     int hexa[8], resultado=0, i, cont=0;
     cont=0;
     if(valor>0){
@@ -86,14 +84,15 @@ int DEC_HEXA(int valor){
         }
     }
     printf("\n\n");
-    return 0;
 }
 
 
 main(){
     setlocale(LC_ALL, "Portuguese");
-    int opc1/*opção 1*/,opc2/*opção 2*/, valor/*número que a pessoa deseja converter*/,contando=0,
-     resultado=0/*valor depois das divisões*/, b[8]/*vetor para números binários*/, i, menu/*resposta dada ao menu principal*/;
+    int opc1/*opção 1*/,opc2/*opção 2*/, valor/*número que a pessoa deseja converter CASO SEJA DECIMAL*/,contando=0,
+     resultado=0/*valor depois da conversão*/, b[8]/*vetor para números binários, octais ou hexadecimais*/, i,
+     menu/*resposta dada ao menu principal*/, tamanho/*tamanho da string*/;
+     char binario[9];
    do{
     printf(" ------------------------------------------\n"
            "|SISTEMA DE CONVERSÃO DE MEDIDAS - NUMÉRICO|\n"
@@ -132,6 +131,10 @@ main(){
                     "4- Hexadecimail\n"
                     "Opção:");
                     scanf("%d", &opc2);
+                    if(opc1==2 && opc2==1){
+                        printf("\n\nValor:");
+                        scanf("%s", &binario);
+                    }else{
                     if(opc1==1){
                         printf("\n\nValor:");
                         scanf("%d", &valor);
@@ -140,6 +143,7 @@ main(){
                                "Por exemplo,\n para binário: 00000101\n"
                                "para octal: 00000019\n"
                                "para hexadecimal: 00000069\n\n\n");
+                    }
                         //GERANDO VETOR
                         printf("\n\nValor:\n");
                         for(i=0; i<8; i++){
@@ -157,19 +161,19 @@ main(){
                                 printf("\n\n**************DEFINIÇÕES**************\n\n");
                                 EXP_DECIMAL();
                                 EXP_BINARIO();
-                                printf(DEC_BIN(valor));
+                                DEC_BIN(valor);
                                 break;
                             case 3:
                                 printf("\n\n**************DEFINIÇÕES**************\n\n");
                                 EXP_DECIMAL();
                                 EXP_OCTAL();
-                                printf(DEC_OCTAL(valor));
+                                DEC_OCTAL(valor);
                                 break;
                             case 4:
                                 printf("\n\n**************DEFINIÇÕES**************\n\n");
                                 EXP_DECIMAL();
                                 EXP_HEXA();
-                                printf(DEC_HEXA(valor));
+                                DEC_HEXA(valor);
                                 break;
                             }
                             break;
@@ -184,18 +188,18 @@ main(){
                                 contando=0;
                                 printf("Conversão de binário para decimal");
                                 //CONVERTENDO DE BINARIO PARA DECIMAL
-                                for(i=7; i>=0; i--){
-                                    contando++;
-                                    if(b[i]==1){
-                                        resultado+=pow(2, contando-1);
+                                tamanho = strlen(binario);
+                                for(i=tamanho-1; i>=0; i--){
+                                    if(binario[i] == '1'){
+                                        resultado+= pow(2,tamanho-1-i);
                                     }
                                 }
                                 //EXIBINDO RESULTADOS
                                 printf("\n-----------------------------//-------------------------------\n\n");
                                 printf("Valor binário= ");
                                 //EXIBINDO VETOR
-                                for(i=0; i<8; i++){
-                                    printf("%d", b[i]);
+                                for(i=0; i<9; i++){
+                                    printf("%c", binario[i]);
                                 }
                                 printf("\nValor convertido para decimal= %d \n\n\n", resultado);
                                 break;
@@ -223,7 +227,7 @@ main(){
                                 }
                                 printf("\n");
                                 //AGORA CONVERTENDO E EXIBINDO DE DECIMAL PARA OCTAL
-                                printf(DEC_OCTAL(resultado));
+                                DEC_OCTAL(resultado);
 
                                 break;
                             case 4:
@@ -247,7 +251,7 @@ main(){
                                 }
                                 printf("\n");
                                 //AGORA CONVERTENDO E EXIBINDO DE DECIMAL PARA HEXADECIMAL
-                                printf(DEC_HEXA(resultado));
+                                DEC_HEXA(resultado);
 
                                 break;
                         }
@@ -297,7 +301,7 @@ main(){
                                     printf("%d", b[i]);
                                 }
                                 //CONVERTENDO DE DEC PARA BINARIO
-                                printf(DEC_BIN(resultado));
+                                DEC_BIN(resultado);
                             break;
                         case 3:
                             printf("\n\nNão da pra converter pois você escolheu a mesma unidade de medida nas duas opções\n\n");
@@ -322,7 +326,7 @@ main(){
                                     printf("%d", b[i]);
                                 }
                                 //CONVERTENDO DE DEC PARA BINARIO
-                                printf(DEC_HEXA(resultado));
+                                DEC_HEXA(resultado);
                             break;
                         }
                         break;
@@ -371,7 +375,7 @@ main(){
                                     printf("%d", b[i]);
                                 }
                                 //CONVERTENDO DE DEC PARA BINARIO
-                                printf(DEC_BIN(resultado));
+                                DEC_BIN(resultado);
                             break;
                         case 3:
                             printf("\n\n**************DEFINIÇÕES**************\n\n");
@@ -393,7 +397,7 @@ main(){
                                     printf("%d", b[i]);
                                 }
                                 //CONVERTENDO DE DEC PARA OCTAL
-                                printf(DEC_OCTAL(resultado));
+                                DEC_OCTAL(resultado);
                             break;
                         case 4:
                             printf("\n\nNão da pra converter pois você escolheu a mesma unidade de medida nas duas opções\n\n");
@@ -404,7 +408,9 @@ main(){
                     break;
                 case 2: //RELATORIO AQUI
                         /*MATRIZ!!!!*/
-                    printf("Aqui serão armazenados os dados que você inseriu e o resultado final após a conversão escolhida");
+                    printf("Aqui deveriam estar armazenados os dados que você inseriu e o resultado final após a conversão escolhida, \nmas para fazer as conversões gerei vetores.."
+                           "\ne pelo que eu pesquisei eu precisaria usar ponteiros para montar a tabela.\n"
+                           "Peço desculpas mas essa parte vai ficar faltando :c");
                     break;
                 case 3:
                     exit(0);
