@@ -143,12 +143,13 @@ main(){
                                "Por exemplo,\n para binário: 00000101\n"
                                "para octal: 00000019\n"
                                "para hexadecimal: 00000069\n\n\n");
-                    }
+
                         //GERANDO VETOR
                         printf("\n\nValor:\n");
                         for(i=0; i<8; i++){
                             scanf("%d", &b[i]);
                         }
+                       }
                     }
                 switch (opc1){
            //DECIMAL PARA...
@@ -185,7 +186,6 @@ main(){
                                 EXP_BINARIO();
                                 EXP_DECIMAL();
                                 resultado=0;
-                                contando=0;
                                 printf("Conversão de binário para decimal");
                                 //CONVERTENDO DE BINARIO PARA DECIMAL
                                 tamanho = strlen(binario);
